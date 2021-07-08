@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 928869541eee871409c2a9e2d49aaca4, type: 3}
+  m_Name: GameSettings
+  m_EditorClassIdentifier: 
+  GameInstaller:
+    EnemyPrefab: {fileID: 3717649027260066358, guid: b955b4761c0a4364d9cc45e7a898a21a, type: 3}
+  Enemy:
+    SpawnSettings:
+      MaxSpawnInterval: 2
+      MinSpawnRadius: 3
+      MaxSpawnRadius: 10
+      BaseColor: {r: 0.603, g: 0.239391, b: 0.239391, a: 1}
