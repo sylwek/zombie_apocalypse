@@ -6,12 +6,12 @@ namespace ZombieApocalypse
     {
         public override void InstallBindings()
         {
-            // Container.Bind<IPlayerRotateState>()
-            //     .To<PlayerMouseRotateState>()
+            // Container.Bind<IPlayerInputState>()
+            //     .To<PlayerMouseInputState>()
             //     .AsCached();
-            Container.BindInterfacesTo<PlayerMouseRotateState>().AsCached();
-
+            Container.BindInterfacesTo<PlayerMouseInputState>().AsSingle();
             Container.BindInterfacesTo<PlayerRotator>().AsSingle();
+            Container.BindInterfacesTo<PlayerShootHandler>().AsSingle();
         }
     }
 }

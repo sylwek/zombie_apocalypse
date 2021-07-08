@@ -2,8 +2,9 @@ using UnityEngine;
 
 namespace ZombieApocalypse
 {
-    public interface IPlayerRotateState
+    public interface IPlayerInputState
     {
         Vector3 LookDir { get; }
+        bool IsFiring { get; }
     }
 }

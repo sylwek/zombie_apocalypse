@@ -9,11 +9,11 @@ namespace ZombieApocalypse
         private readonly Player _player;
 
         [Inject]
-        private readonly IPlayerRotateState _playerRotateState;
+        private readonly IPlayerInputState _playerInputState;
 
         public void Tick()
         {
-            var newRotation = Quaternion.LookRotation(_playerRotateState.LookDir, Vector3.up);
+            var newRotation = Quaternion.LookRotation(_playerInputState.LookDir, Vector3.up);
             _player.Rotation = Quaternion.Euler(
                 _player.Rotation.eulerAngles.x,
                 newRotation.eulerAngles.y,

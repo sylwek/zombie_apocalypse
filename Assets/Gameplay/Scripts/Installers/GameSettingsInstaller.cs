@@ -9,6 +9,7 @@ namespace ZombieApocalypse
     {
         public GameInstaller.Settings GameInstaller;
         public EnemySettings Enemy;
+        public PlayerSettings Player;
 
         [Serializable]
         public class EnemySettings
@@ -16,10 +17,17 @@ namespace ZombieApocalypse
             public EnemySpawner.Settings SpawnSettings;
         }
 
+        [Serializable]
+        public class PlayerSettings
+        {
+            public PlayerShootHandler.Settings ShootSettings;
+        }
+
         public override void InstallBindings()
         {
             Container.BindInstance(GameInstaller).IfNotBound();
             Container.BindInstance(Enemy.SpawnSettings).IfNotBound();
+            Container.BindInstance(Player.ShootSettings).IfNotBound();
         }
     }
 }

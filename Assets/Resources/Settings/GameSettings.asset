@@ -14,9 +14,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   GameInstaller:
     EnemyPrefab: {fileID: 3717649027260066358, guid: b955b4761c0a4364d9cc45e7a898a21a, type: 3}
+    BulletPrefab: {fileID: 3981663550622064317, guid: c3ce37e621a451c48ae1f5808f148650, type: 3}
   Enemy:
     SpawnSettings:
       MaxSpawnInterval: 2
       MinSpawnRadius: 3
       MaxSpawnRadius: 10
       BaseColor: {r: 0.603, g: 0.239391, b: 0.239391, a: 1}
+  Player:
+    ShootSettings:
+      BulletLifetime: 2
+      BulletSpeed: 40
+      BulletDamage: 75
+      MinShootInterval: 0.2
+      BulletSpawnOffsetDistance: 2
