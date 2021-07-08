@@ -6,6 +6,16 @@ namespace ZombieApocalypse
 {
     public class PlayerShootHandler : ITickable
     {
+        [Serializable]
+        public class Settings
+        {
+            public float BulletLifetime;
+            public float BulletSpeed;
+            public int BulletDamage;
+            public float MinShootInterval;
+            public float BulletSpawnOffsetDistance;
+        }
+
         [Inject]
         private readonly Settings _settings;
         [Inject]
@@ -37,16 +47,6 @@ namespace ZombieApocalypse
             var transform = bullet.transform;
             transform.position = _player.Position + _player.transform.forward * _settings.BulletSpawnOffsetDistance;
             transform.rotation = _player.Rotation;
-        }
-
-        [Serializable]
-        public class Settings
-        {
-            public float BulletLifetime;
-            public float BulletSpeed;
-            public int BulletDamage;
-            public float MinShootInterval;
-            public float BulletSpawnOffsetDistance;
         }
     }
 }

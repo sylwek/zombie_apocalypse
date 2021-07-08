@@ -15,6 +15,7 @@ namespace ZombieApocalypse
         public class EnemySettings
         {
             public EnemySpawner.Settings SpawnSettings;
+            public EnemyMover.Settings MovementSettings;
         }
 
         [Serializable]
@@ -27,6 +28,7 @@ namespace ZombieApocalypse
         {
             Container.BindInstance(GameInstaller).IfNotBound();
             Container.BindInstance(Enemy.SpawnSettings).IfNotBound();
+            Container.BindInstance(Enemy.MovementSettings).IfNotBound();
             Container.BindInstance(Player.ShootSettings).IfNotBound();
         }
     }

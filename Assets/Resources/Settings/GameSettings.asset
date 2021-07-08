@@ -21,6 +21,8 @@ MonoBehaviour:
       MinSpawnRadius: 3
       MaxSpawnRadius: 10
       BaseColor: {r: 0.603, g: 0.239391, b: 0.239391, a: 1}
+    MovementSettings:
+      MoveSpeed: 1
   Player:
     ShootSettings:
       BulletLifetime: 2

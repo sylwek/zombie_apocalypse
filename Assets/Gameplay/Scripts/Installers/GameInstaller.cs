@@ -33,7 +33,8 @@ namespace ZombieApocalypse
             Container.BindFactory<Vector3, Color, Enemy, Enemy.Factory>()
                 .FromPoolableMemoryPool<Vector3, Color, Enemy, EnemyPool>(poolBinder => poolBinder
                     .WithInitialSize(30)
-                    .FromComponentInNewPrefab(_settings.EnemyPrefab)
+                    .FromSubContainerResolve()
+                    .ByNewPrefabInstaller<EnemyInstaller>(_settings.EnemyPrefab)
                     .UnderTransformGroup("Enemies"));
 
             Container.BindFactory<float, float, int, GameObject, Bullet, Bullet.Factory>()
