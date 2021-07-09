@@ -10,6 +10,7 @@ namespace ZombieApocalypse
         public GameInstaller.Settings GameInstaller;
         public EnemySettings Enemy;
         public PlayerSettings Player;
+        public SpellSettings Spell;
         public DifficultySettings Difficulty;
 
         [Serializable]
@@ -27,6 +28,23 @@ namespace ZombieApocalypse
         }
 
         [Serializable]
+        public class SpellSettings
+        {
+            public SpellGameplaySettings FireSpell;
+            public SpellInputCaster.Settings InputSettings;
+            public float SpawnOffsetDistance;
+        }
+
+        [Serializable]
+        public class SpellGameplaySettings
+        {
+            public float Lifetime;
+            public float MoveSpeed;
+            public float CooldownTime;
+            public int Damage;
+        }
+
+        [Serializable]
         public class DifficultySettings
         {
             public string Name;
@@ -40,6 +58,8 @@ namespace ZombieApocalypse
             Container.BindInstance(Enemy.MovementSettings).IfNotBound();
             Container.BindInstance(Player.ShootSettings).IfNotBound();
             Container.BindInstance(Player.PlayerDifficultySettings).IfNotBound();
+            Container.BindInstance(Spell).IfNotBound();
+            Container.BindInstance(Spell.InputSettings).IfNotBound();
             Container.BindInstance(Difficulty).IfNotBound();
         }
     }

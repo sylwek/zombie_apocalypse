@@ -45,6 +45,7 @@ namespace ZombieApocalypse
                 _settings.BulletSpeed, _settings.BulletLifetime, _settings.BulletDamage, _player.gameObject);
 
             var transform = bullet.transform;
+            // TODO: move to factory parameters
             transform.position = _player.Position + _player.transform.forward * _settings.BulletSpawnOffsetDistance;
             transform.rotation = _player.Rotation;
         }

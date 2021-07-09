@@ -30,7 +30,9 @@ namespace ZombieApocalypse
         }
 
         // TODO: optimize
-        public bool AcceptDamage(GameObject gameObject) => gameObject.GetComponent<Bullet>() != null;
+        public bool AcceptDamage(GameObject gameObject) =>
+            gameObject.GetComponent<Bullet>() != null
+            || gameObject.GetComponent<SpellBase>() != null;
 
         public void TakeDamage(int damage)
         {

@@ -15,6 +15,7 @@ MonoBehaviour:
   GameInstaller:
     EnemyPrefab: {fileID: 3717649027260066358, guid: b955b4761c0a4364d9cc45e7a898a21a, type: 3}
     BulletPrefab: {fileID: 3981663550622064317, guid: c3ce37e621a451c48ae1f5808f148650, type: 3}
+    FireSpell: {fileID: 3531071893202349176, guid: 6f9e29fcfa5493a4ea45a69ee189e4e9, type: 3}
   Enemy:
     SpawnSettings:
       InitialHP: 100
@@ -33,6 +34,15 @@ MonoBehaviour:
       BulletSpawnOffsetDistance: 2
     PlayerDifficultySettings:
       InitialHP: 150
+  Spell:
+    FireSpell:
+      Lifetime: 2
+      MoveSpeed: 15
+      CooldownTime: 0.4
+      Damage: 60
+    InputSettings:
+      FireSpellInputCode: 49
+    SpawnOffsetDistance: 2
   Difficulty:
     Name: 
     EnemyDamage: 50

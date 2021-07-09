@@ -3,36 +3,9 @@ using Zenject;
 
 namespace ZombieApocalypse
 {
-    public class Bullet : MonoBehaviour, IPoolable<float, float, int, GameObject, IMemoryPool>
+    public class Bullet : Projectile, IPoolable<float, float, int, GameObject, IMemoryPool>
     {
-        private float _startTime;
-        private float _speed;
-        private float _lifeTime;
-        private int _damage;
-        private GameObject _source;
-
-        private IMemoryPool _pool;
-
-        private Vector3 MoveDirection => -transform.forward;
-
-        public void OnTriggerEnter(Collider other)
-        {
-            var damagable = other.GetComponent<IDamagable>();
-            if (damagable != null && damagable.AcceptDamage(gameObject))
-            {
-                damagable.TakeDamage(_damage);
-                _pool.Despawn(this);
-            }
-        }
-
-        public void Update()
-        {
-            // TODO: get rid of Update
-            transform.position -= MoveDirection * _speed * Time.deltaTime;
-
-            if (Time.realtimeSinceStartup - _startTime > _lifeTime)
-                _pool.Despawn(this);
-        }
+        private GameObject _source; // TODO: remove
 
         public void OnSpawned(float speed, float lifeTime, int damage, GameObject go, IMemoryPool pool)
         {
@@ -48,6 +21,12 @@ namespace ZombieApocalypse
         public void OnDespawned()
         {
             _pool = null;
+        }
+
+        protected override void OnDamageDone()
+        {
+            base.OnDamageDone();
+            _pool.Despawn(this);
         }
 
         public class Factory : PlaceholderFactory<float, float, int, GameObject, Bullet>
