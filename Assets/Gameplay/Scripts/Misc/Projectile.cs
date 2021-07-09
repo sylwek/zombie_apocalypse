@@ -34,11 +34,11 @@ namespace ZombieApocalypse
             if (damagable != null && damagable.AcceptDamage(gameObject))
             {
                 damagable.TakeDamage(_damage);
-                OnDamageDone();
+                OnDamageDone(other.gameObject);
             }
         }
 
-        protected virtual void OnDamageDone()
+        protected virtual void OnDamageDone(GameObject obj)
         {
         }
     }

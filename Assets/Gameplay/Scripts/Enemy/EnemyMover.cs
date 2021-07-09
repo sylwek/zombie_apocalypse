@@ -23,7 +23,11 @@ namespace ZombieApocalypse
 
         public void Tick()
         {
-            _enemy.Position = Vector3.MoveTowards(_enemy.Position, _player.Position, _settings.MoveSpeed * Time.deltaTime);
+            // TODO: consider using Unity's physics
+            var movementMul = _enemy.SlowdownEndTime > Time.time
+                ? _enemy.SlowdownMovementMul
+                : 1f;
+            _enemy.Position = Vector3.MoveTowards(_enemy.Position, _player.Position, _settings.MoveSpeed * movementMul * Time.deltaTime);
         }
     }
 }

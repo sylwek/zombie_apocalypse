@@ -8,6 +8,7 @@ namespace ZombieApocalypse
         public enum SpellType
         {
             FireStrike,
+            IceBlast,
         }
 
         protected float _cooldownDuration;

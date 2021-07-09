@@ -15,7 +15,8 @@ MonoBehaviour:
   GameInstaller:
     EnemyPrefab: {fileID: 3717649027260066358, guid: b955b4761c0a4364d9cc45e7a898a21a, type: 3}
     BulletPrefab: {fileID: 3981663550622064317, guid: c3ce37e621a451c48ae1f5808f148650, type: 3}
-    FireSpell: {fileID: 3531071893202349176, guid: 6f9e29fcfa5493a4ea45a69ee189e4e9, type: 3}
+    FireSpellPrefab: {fileID: 3531071893202349176, guid: 6f9e29fcfa5493a4ea45a69ee189e4e9, type: 3}
+    IceSpellPrefab: {fileID: 6309573745800437777, guid: 294d0179cbd00e6409544a94b833940c, type: 3}
   Enemy:
     SpawnSettings:
       InitialHP: 100
@@ -38,11 +39,19 @@ MonoBehaviour:
     FireSpell:
       Lifetime: 2
       MoveSpeed: 15
-      CooldownTime: 0.4
+      CooldownDuration: 0.4
       Damage: 60
+    IceSpell:
+      Lifetime: 2
+      MoveSpeed: 10
+      CooldownDuration: 0.8
+      Damage: 0
+      SlowdownDuration: 5
+      SlowdownMultiplier: 0.5
     InputSettings:
       FireSpellInputCode: 49
+      IceSpellInputCode: 50
     SpawnOffsetDistance: 2
   Difficulty:
-    Name: 
+    Name: Easy
     EnemyDamage: 50

@@ -1,10 +1,9 @@
-using System;
 using UnityEngine;
 using Zenject;
 
 namespace ZombieApocalypse
 {
-    public class Enemy : MonoBehaviour, IDamagable, IPoolable<Vector3, Color, int, IMemoryPool>
+    public class Enemy : MonoBehaviour, IDamagable, IMovementSlowdown, IPoolable<Vector3, Color, int, IMemoryPool>
     {
         [Inject]
         private readonly GameSettingsInstaller.DifficultySettings _difficultySettings;
@@ -16,6 +15,9 @@ namespace ZombieApocalypse
         }
 
         public int HP { get; private set; }
+        public float SlowdownEndTime { get; private set; }
+        public float SlowdownMovementMul { get; private set; }
+
 
         private IMemoryPool _pool;
 
@@ -59,6 +61,12 @@ namespace ZombieApocalypse
 
         public class Factory : PlaceholderFactory<Vector3, Color, int, Enemy>
         {
+        }
+
+        public void Slowdown(float duration, float multiplier)
+        {
+            SlowdownEndTime = Time.time + duration;
+            SlowdownMovementMul = multiplier;
         }
     }
 }

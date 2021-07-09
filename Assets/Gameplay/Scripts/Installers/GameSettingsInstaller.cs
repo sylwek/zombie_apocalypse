@@ -31,6 +31,7 @@ namespace ZombieApocalypse
         public class SpellSettings
         {
             public SpellGameplaySettings FireSpell;
+            public IceSpellGameplaySettings IceSpell;
             public SpellInputCaster.Settings InputSettings;
             public float SpawnOffsetDistance;
         }
@@ -40,8 +41,15 @@ namespace ZombieApocalypse
         {
             public float Lifetime;
             public float MoveSpeed;
-            public float CooldownTime;
+            public float CooldownDuration;
             public int Damage;
+        }
+
+        [Serializable]
+        public class IceSpellGameplaySettings : SpellGameplaySettings
+        {
+            public float SlowdownDuration;
+            public float SlowdownMultiplier;
         }
 
         [Serializable]

@@ -10,6 +10,7 @@ namespace ZombieApocalypse
         public class Settings
         {
             public KeyCode FireSpellInputCode;
+            public KeyCode IceSpellInputCode;
         }
 
         [Inject]
@@ -22,6 +23,9 @@ namespace ZombieApocalypse
         {
             if (Input.GetKey(_settings.FireSpellInputCode))
                 _spellSpawner.CastSpellIfPossible(SpellBase.SpellType.FireStrike);
+
+            if (Input.GetKey(_settings.IceSpellInputCode))
+                _spellSpawner.CastSpellIfPossible(SpellBase.SpellType.IceBlast);
         }
     }
 }

@@ -23,9 +23,9 @@ namespace ZombieApocalypse
             _pool = null;
         }
 
-        protected override void OnDamageDone()
+        protected override void OnDamageDone(GameObject obj)
         {
-            base.OnDamageDone();
+            base.OnDamageDone(obj);
             _pool.Despawn(this);
         }
 
