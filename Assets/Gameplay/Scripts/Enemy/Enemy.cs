@@ -8,6 +8,9 @@ namespace ZombieApocalypse
         [Inject]
         private readonly GameSettingsInstaller.DifficultySettings _difficultySettings;
 
+        [Inject]
+        private readonly SignalBus _signalBus;
+
         public Vector3 Position
         {
             get => transform.position;
@@ -41,6 +44,7 @@ namespace ZombieApocalypse
             HP -= damage;
             if (HP <= 0)
             {
+                _signalBus.Fire<EnemyKilledSignal>();
                 _pool.Despawn(this);
             }
         }

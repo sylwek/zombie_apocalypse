@@ -25,6 +25,9 @@ namespace ZombieApocalypse
         [Inject]
         private readonly Settings _settings;
 
+        [Inject]
+        private readonly SignalBus _signalBus;
+
         public int HP { get; private set; }
 
         private Transform _transform;
@@ -43,7 +46,9 @@ namespace ZombieApocalypse
         {
             HP -= Mathf.Max(HP - damage, 0);
             if (HP <= 0)
-                 Debug.Log("Player died.");
+            {
+                _signalBus.Fire<PlayerKilledSignal>();
+            }
         }
     }
 }

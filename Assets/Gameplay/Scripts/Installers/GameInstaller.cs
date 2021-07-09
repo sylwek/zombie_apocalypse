@@ -29,6 +29,7 @@ namespace ZombieApocalypse
             Container.BindInterfacesTo<EnemySpawner>().AsSingle();
             Container.Bind<SpellSpawner>().AsSingle();
             Container.BindInterfacesTo<SpellInputCaster>().AsSingle();
+            Container.BindInterfacesAndSelfTo<GameplayStatistics>().AsSingle();
 
             Container.BindFactory<Vector3, Color, int, Enemy, Enemy.Factory>()
                 .FromPoolableMemoryPool<Vector3, Color, int, Enemy, EnemyPool>(poolBinder => poolBinder
@@ -55,6 +56,9 @@ namespace ZombieApocalypse
                     .WithInitialSize(10)
                     .FromComponentInNewPrefab(_settings.IceSpellPrefab)
                     .UnderTransformGroup("Spells"));
+
+            GameSignalsInstaller.Install(Container);
+
         }
 
         private class EnemyPool : MonoPoolableMemoryPool<Vector3, Color, int, IMemoryPool, Enemy>
