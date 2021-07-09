@@ -18,7 +18,7 @@ namespace ZombieApocalypse
         public void OnTriggerEnter(Collider other)
         {
             var damagable = other.GetComponent<IDamagable>();
-            if (damagable != null && other.gameObject != _source)
+            if (damagable != null && damagable.AcceptDamage(gameObject))
             {
                 damagable.TakeDamage(_damage);
                 _pool.Despawn(this);

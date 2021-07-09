@@ -1,40 +1,51 @@
+using System;
 using UnityEngine;
 using Zenject;
 
 namespace ZombieApocalypse
 {
-    public class Enemy : MonoBehaviour, IDamagable, IPoolable<Vector3, Color, IMemoryPool>
+    public class Enemy : MonoBehaviour, IDamagable, IPoolable<Vector3, Color, int, IMemoryPool>
     {
+        [Inject]
+        private readonly GameSettingsInstaller.DifficultySettings _difficultySettings;
+
         public Vector3 Position
         {
             get => transform.position;
             set => transform.position = value;
         }
 
-        private int _HP;
+        public int HP { get; private set; }
 
         private IMemoryPool _pool;
 
-        // [Inject]
-        // public void Construct(Vector3 position, Color color)
-        // {
-        //     Position = position;
-        //     GetComponent<Renderer>().material.color = color;
-        // }
+        private void OnTriggerEnter(Collider other)
+        {
+            var damagable = other.GetComponent<IDamagable>();
+            if (damagable != null && damagable.AcceptDamage(gameObject))
+            {
+                damagable.TakeDamage(_difficultySettings.EnemyDamage);
+                _pool.Despawn(this);
+            }
+        }
+
+        // TODO: optimize
+        public bool AcceptDamage(GameObject gameObject) => gameObject.GetComponent<Bullet>() != null;
 
         public void TakeDamage(int damage)
         {
-            _HP -= damage;
-            if (_HP <= 0)
+            HP -= damage;
+            if (HP <= 0)
             {
                 _pool.Despawn(this);
             }
         }
 
-        public void OnSpawned(Vector3 position, Color color, IMemoryPool pool)
+        public void OnSpawned(Vector3 position, Color color, int hp, IMemoryPool pool)
         {
             _pool = pool;
 
+            HP = hp;
             Position = position;
             GetComponent<Renderer>().material.color = color;
         }
@@ -44,7 +55,7 @@ namespace ZombieApocalypse
             _pool = null;
         }
 
-        public class Factory : PlaceholderFactory<Vector3, Color, Enemy>
+        public class Factory : PlaceholderFactory<Vector3, Color, int, Enemy>
         {
         }
     }

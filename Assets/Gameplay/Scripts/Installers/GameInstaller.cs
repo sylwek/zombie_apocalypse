@@ -30,8 +30,8 @@ namespace ZombieApocalypse
             //     .FromComponentInNewPrefab(_settings.EnemyPrefab)
             //     .UnderTransformGroup("Enemies");
 
-            Container.BindFactory<Vector3, Color, Enemy, Enemy.Factory>()
-                .FromPoolableMemoryPool<Vector3, Color, Enemy, EnemyPool>(poolBinder => poolBinder
+            Container.BindFactory<Vector3, Color, int, Enemy, Enemy.Factory>()
+                .FromPoolableMemoryPool<Vector3, Color, int, Enemy, EnemyPool>(poolBinder => poolBinder
                     .WithInitialSize(30)
                     .FromSubContainerResolve()
                     .ByNewPrefabInstaller<EnemyInstaller>(_settings.EnemyPrefab)
@@ -44,7 +44,7 @@ namespace ZombieApocalypse
                     .UnderTransformGroup("Bullets"));
         }
 
-        class EnemyPool : MonoPoolableMemoryPool<Vector3, Color, IMemoryPool, Enemy>
+        class EnemyPool : MonoPoolableMemoryPool<Vector3, Color, int, IMemoryPool, Enemy>
         {
         }
 

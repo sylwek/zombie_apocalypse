@@ -10,6 +10,7 @@ namespace ZombieApocalypse
         public GameInstaller.Settings GameInstaller;
         public EnemySettings Enemy;
         public PlayerSettings Player;
+        public DifficultySettings Difficulty;
 
         [Serializable]
         public class EnemySettings
@@ -22,6 +23,14 @@ namespace ZombieApocalypse
         public class PlayerSettings
         {
             public PlayerShootHandler.Settings ShootSettings;
+            public Player.Settings PlayerDifficultySettings;
+        }
+
+        [Serializable]
+        public class DifficultySettings
+        {
+            public string Name;
+            public int EnemyDamage;
         }
 
         public override void InstallBindings()
@@ -30,6 +39,8 @@ namespace ZombieApocalypse
             Container.BindInstance(Enemy.SpawnSettings).IfNotBound();
             Container.BindInstance(Enemy.MovementSettings).IfNotBound();
             Container.BindInstance(Player.ShootSettings).IfNotBound();
+            Container.BindInstance(Player.PlayerDifficultySettings).IfNotBound();
+            Container.BindInstance(Difficulty).IfNotBound();
         }
     }
 }

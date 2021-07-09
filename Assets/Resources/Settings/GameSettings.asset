@@ -17,6 +17,7 @@ MonoBehaviour:
     BulletPrefab: {fileID: 3981663550622064317, guid: c3ce37e621a451c48ae1f5808f148650, type: 3}
   Enemy:
     SpawnSettings:
+      InitialHP: 100
       MaxSpawnInterval: 2
       MinSpawnRadius: 3
       MaxSpawnRadius: 10
@@ -30,3 +31,8 @@ MonoBehaviour:
       BulletDamage: 75
       MinShootInterval: 0.2
       BulletSpawnOffsetDistance: 2
+    PlayerDifficultySettings:
+      InitialHP: 150
+  Difficulty:
+    Name: 
+    EnemyDamage: 50
