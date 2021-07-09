@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using UnityEngine;
 using Zenject;
 
@@ -11,7 +12,7 @@ namespace ZombieApocalypse
         public EnemySettings Enemy;
         public PlayerSettings Player;
         public SpellSettings Spell;
-        public DifficultySettings Difficulty;
+        public DifficultySettings[] Difficulty;
 
         [Serializable]
         public class EnemySettings
@@ -24,7 +25,6 @@ namespace ZombieApocalypse
         public class PlayerSettings
         {
             public PlayerShootHandler.Settings ShootSettings;
-            public Player.Settings PlayerDifficultySettings;
         }
 
         [Serializable]
@@ -57,6 +57,9 @@ namespace ZombieApocalypse
         {
             public string Name;
             public int EnemyDamage;
+            public float MinEnemySpawnInterval;
+            public float MaxEnemySpawnInterval;
+            public int PlayerInitialHP;
         }
 
         public override void InstallBindings()
@@ -65,10 +68,9 @@ namespace ZombieApocalypse
             Container.BindInstance(Enemy.SpawnSettings).IfNotBound();
             Container.BindInstance(Enemy.MovementSettings).IfNotBound();
             Container.BindInstance(Player.ShootSettings).IfNotBound();
-            Container.BindInstance(Player.PlayerDifficultySettings).IfNotBound();
             Container.BindInstance(Spell).IfNotBound();
             Container.BindInstance(Spell.InputSettings).IfNotBound();
-            Container.BindInstance(Difficulty).IfNotBound();
+            Container.BindInstance(Difficulty.First()).IfNotBound();
         }
     }
 }

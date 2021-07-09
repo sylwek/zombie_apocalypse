@@ -21,11 +21,17 @@ namespace ZombieApocalypse
         [Inject]
         private readonly Settings _settings;
 
+        [Inject]
+        private readonly GameplayDifficultyManager _difficultyManager;
+
         public override void InstallBindings()
         {
             Container.Bind<AsyncProcessor>().FromNewComponentOnNewGameObject().AsSingle(); // TODO: move to ProjectContext installer
 
-            Container.Bind<Player>().FromInstance(_player).AsSingle().NonLazy();
+            if (_difficultyManager.SelectedDifficulty != null)
+                Container.BindInstance(_difficultyManager.SelectedDifficulty);
+
+            Container.BindInterfacesAndSelfTo<Player>().FromInstance(_player).AsSingle();
             Container.BindInterfacesTo<EnemySpawner>().AsSingle();
             Container.Bind<SpellSpawner>().AsSingle();
             Container.BindInterfacesTo<SpellInputCaster>().AsSingle();
@@ -56,8 +62,6 @@ namespace ZombieApocalypse
                     .WithInitialSize(10)
                     .FromComponentInNewPrefab(_settings.IceSpellPrefab)
                     .UnderTransformGroup("Spells"));
-
-            GameSignalsInstaller.Install(Container);
 
         }
 

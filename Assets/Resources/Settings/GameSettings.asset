@@ -20,7 +20,6 @@ MonoBehaviour:
   Enemy:
     SpawnSettings:
       InitialHP: 100
-      MaxSpawnInterval: 2
       MinSpawnRadius: 3
       MaxSpawnRadius: 10
       BaseColor: {r: 0.603, g: 0.239391, b: 0.239391, a: 1}
@@ -33,8 +32,6 @@ MonoBehaviour:
       BulletDamage: 75
       MinShootInterval: 0.2
       BulletSpawnOffsetDistance: 2
-    PlayerDifficultySettings:
-      InitialHP: 150
   Spell:
     FireSpell:
       Lifetime: 2
@@ -53,5 +50,18 @@ MonoBehaviour:
       IceSpellInputCode: 50
     SpawnOffsetDistance: 2
   Difficulty:
-    Name: Easy
+  - Name: Easy
     EnemyDamage: 50
+    MinEnemySpawnInterval: 0.4
+    MaxEnemySpawnInterval: 0.4
+    PlayerInitialHP: 250
+  - Name: Medium
+    EnemyDamage: 50
+    MinEnemySpawnInterval: 0.2
+    MaxEnemySpawnInterval: 0.2
+    PlayerInitialHP: 150
+  - Name: Hard
+    EnemyDamage: 50
+    MinEnemySpawnInterval: 0.1
+    MaxEnemySpawnInterval: 0.1
+    PlayerInitialHP: 50

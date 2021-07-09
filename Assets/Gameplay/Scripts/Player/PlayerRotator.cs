@@ -13,6 +13,9 @@ namespace ZombieApocalypse
 
         public void Tick()
         {
+            if (Time.timeScale <= 0f)
+                return;
+
             var newRotation = Quaternion.LookRotation(_playerInputState.LookDir, Vector3.up);
             _player.Rotation = Quaternion.Euler(
                 _player.Rotation.eulerAngles.x,

@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using Zenject;
 
@@ -6,12 +5,6 @@ namespace ZombieApocalypse
 {
     public class Player : MonoBehaviour, IDamagable, IInitializable
     {
-        [Serializable]
-        public class Settings
-        {
-            public int InitialHP;
-        }
-
         public Vector3 Position => Transform.position;
 
         public Vector3 Forward => Transform.forward;
@@ -23,7 +16,7 @@ namespace ZombieApocalypse
         }
 
         [Inject]
-        private readonly Settings _settings;
+        private readonly GameSettingsInstaller.DifficultySettings _settings;
 
         [Inject]
         private readonly SignalBus _signalBus;
@@ -37,14 +30,15 @@ namespace ZombieApocalypse
 
         public void Initialize()
         {
-            HP = _settings.InitialHP;
+            HP = _settings.PlayerInitialHP;
+            Debug.Log($"Playing with {_settings.Name} difficulty");
         }
 
         public bool AcceptDamage(GameObject gameObject) => gameObject.GetComponent<Enemy>() != null;
 
         public void TakeDamage(int damage)
         {
-            HP -= Mathf.Max(HP - damage, 0);
+            HP = Mathf.Max(HP - damage, 0);
             if (HP <= 0)
             {
                 _signalBus.Fire<PlayerKilledSignal>();

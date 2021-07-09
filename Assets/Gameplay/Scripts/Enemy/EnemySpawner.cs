@@ -11,7 +11,6 @@ namespace ZombieApocalypse
         public class Settings
         {
             public int InitialHP;
-            public float MaxSpawnInterval;
             public float MinSpawnRadius;
             public float MaxSpawnRadius;
             public Color BaseColor;
@@ -19,6 +18,8 @@ namespace ZombieApocalypse
 
         [Inject]
         private readonly Settings _settings;
+        [Inject]
+        private readonly GameSettingsInstaller.DifficultySettings _difficultySettings;
         [Inject]
         private readonly Enemy.Factory _enemyFactory;
         [Inject]
@@ -56,7 +57,7 @@ namespace ZombieApocalypse
             _enemyFactory.Create(_player.Position + positionOffset, color, _settings.InitialHP);
         }
 
-        private float GetNextSpawnInverval() => Random.Range(0f, _settings.MaxSpawnInterval);
+        private float GetNextSpawnInverval() => Random.Range(_difficultySettings.MaxEnemySpawnInterval, _difficultySettings.MaxEnemySpawnInterval);
 
     }
 }
