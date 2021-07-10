@@ -1,5 +1,4 @@
 using System;
-using System.Linq;
 using UnityEngine;
 using Zenject;
 
@@ -75,7 +74,6 @@ namespace ZombieApocalypse
             Container.BindInstance(Player.ShootSettings).IfNotBound();
             Container.BindInstance(Spell).IfNotBound();
             Container.BindInstance(Spell.InputSettings).IfNotBound();
-            //Container.BindInstance(Difficulty.First()).IfNotBound();
         }
     }
 }

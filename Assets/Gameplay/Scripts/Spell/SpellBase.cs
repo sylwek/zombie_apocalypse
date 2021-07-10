@@ -31,28 +31,5 @@ namespace ZombieApocalypse
         {
             _pool = null;
         }
-
-        // public class Factory : PlaceholderFactory<UnityEngine.Object, Vector3, Quaternion, float, float, int, SpellBase>
-        // {
-        // }
-
-        // public class SpellFactory : IFactory<UnityEngine.Object, Vector3, Quaternion, float, float, int, SpellBase>
-        // {
-        //     readonly DiContainer _container;
-        //     readonly IList<UnityEngine.Object> _prefabs;
-        //
-        //     //public SpellBase Create<T>(Vector3 param2, Quaternion param3, float param4, float param5, int param6)
-        //     public SpellBase Create<T>()
-        //         where T : SpellBase
-        //     {
-        //         var prefab = _prefabs.OfType<T>().Single();
-        //         return Create(prefab, param2, param3, param4, param5, param6);
-        //     }
-        //
-        //     public SpellBase Create(Object param1, Vector3 param2, Quaternion param3, float param4, float param5, int param6)
-        //     {
-        //         return _container.InstantiatePrefabForComponent<SpellBase>(param1);
-        //     }
-        // }
     }
 }

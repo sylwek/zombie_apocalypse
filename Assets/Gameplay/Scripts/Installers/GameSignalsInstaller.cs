@@ -10,7 +10,6 @@ namespace ZombieApocalypse
 
             Container.DeclareSignal<EnemyKilledSignal>();
             Container.DeclareSignal<PlayerKilledSignal>();
-            Container.DeclareSignal<DifficultySelected>();
         }
     }
 }
