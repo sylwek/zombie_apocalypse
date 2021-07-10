@@ -14,6 +14,9 @@ namespace ZombieApocalypse
         public SpellSettings Spell;
         public DifficultySettings[] Difficulty;
 
+        [Inject]
+        private readonly GameplayDifficultyManager _difficultyManager;
+
         [Serializable]
         public class EnemySettings
         {
@@ -64,13 +67,15 @@ namespace ZombieApocalypse
 
         public override void InstallBindings()
         {
+            _difficultyManager.AllDifficulties = Difficulty;
+
             Container.BindInstance(GameInstaller).IfNotBound();
             Container.BindInstance(Enemy.SpawnSettings).IfNotBound();
             Container.BindInstance(Enemy.MovementSettings).IfNotBound();
             Container.BindInstance(Player.ShootSettings).IfNotBound();
             Container.BindInstance(Spell).IfNotBound();
             Container.BindInstance(Spell.InputSettings).IfNotBound();
-            Container.BindInstance(Difficulty.First()).IfNotBound();
+            //Container.BindInstance(Difficulty.First()).IfNotBound();
         }
     }
 }

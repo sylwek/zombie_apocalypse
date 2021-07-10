@@ -1,5 +1,7 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 using Zenject;
 
 namespace ZombieApocalypse
@@ -15,9 +17,13 @@ namespace ZombieApocalypse
         [SerializeField]
         private TextMeshProUGUI _summaryLabel;
 
+        [SerializeField]
+        private Button _mainMenuButton;
+
         public void Initialize()
         {
             _signalBus.Subscribe<PlayerKilledSignal>(OnPlayerKilled);
+            _mainMenuButton.onClick.AddListener(MainMenu);
         }
 
         protected override void OnShowed()
@@ -31,6 +37,11 @@ namespace ZombieApocalypse
         private void OnPlayerKilled()
         {
             Show();
+        }
+
+        private void MainMenu()
+        {
+            SceneManager.LoadScene("MainMenu");
         }
     }
 }

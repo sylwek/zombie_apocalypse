@@ -7,16 +7,12 @@ namespace ZombieApocalypse
         [Inject]
         private readonly SignalBus _signalBus;
 
-        public GameSettingsInstaller.DifficultySettings SelectedDifficulty { get; private set; }
+        public GameSettingsInstaller.DifficultySettings SelectedDifficulty { get; set; }
+
+        public GameSettingsInstaller.DifficultySettings[] AllDifficulties { get; set; }
 
         public void Initialize()
         {
-            _signalBus.Subscribe<DifficultySelected>(OnDifficultySelected);
-        }
-
-        private void OnDifficultySelected(DifficultySelected diff)
-        {
-            SelectedDifficulty = diff.Difficulty;
         }
     }
 }

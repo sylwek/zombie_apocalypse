@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using UnityEngine;
 using Zenject;
 
@@ -30,6 +31,8 @@ namespace ZombieApocalypse
 
             if (_difficultyManager.SelectedDifficulty != null)
                 Container.BindInstance(_difficultyManager.SelectedDifficulty);
+            else
+                Container.BindInstance(_difficultyManager.AllDifficulties.First());
 
             Container.BindInterfacesAndSelfTo<Player>().FromInstance(_player).AsSingle();
             Container.BindInterfacesTo<EnemySpawner>().AsSingle();
